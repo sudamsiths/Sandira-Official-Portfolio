@@ -1,0 +1,76 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #3b82f6;
+  --color-primary-foreground: #ffffff;
+  --color-secondary: #8b5cf6;
+  --color-accent: #f43f5e;
+  --color-background: #020617;
+  --color-foreground: #f8fafc;
+  --color-background-start: #020617;
+  --color-background-end: #0f172a;
+  --color-glass: rgba(15, 23, 42, 0.7);
+  --color-glass-border: rgba(255, 255, 255, 0.1);
+}
+
+@layer base {
+  :root {
+    --background: #020617;
+    --foreground: #f8fafc;
+  }
+
+  * {
+    @apply border-white/10;
+  }
+
+  body {
+    @apply bg-background text-foreground selection:bg-primary/30 selection:text-primary-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  ::-webkit-scrollbar {
+    @apply w-2;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-background;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-white/10 rounded-full hover:bg-white/20 transition-colors;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-stone-900/20 backdrop-blur-xl border border-white/10 rounded-2xl;
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-linear-to-r from-orange-400 via-amber-400 to-rose-400;
+  }
+
+  .btn-gradient {
+    @apply relative inline-flex items-center justify-center px-8 py-3 font-semibold text-white transition-all duration-300 bg-linear-to-r from-primary to-secondary rounded-full hover:shadow-lg hover:shadow-primary/25 hover:scale-[1.02] active:scale-[0.98];
+  }
+
+  .section-padding {
+    @apply py-16 px-4 sm:px-6 md:py-20 md:px-12 lg:px-20;
+  }
+}
+
+@layer utilities {
+  .animate-slow-fade {
+    animation: fade 2s ease-in-out infinite;
+  }
+
+  @keyframes fade {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
